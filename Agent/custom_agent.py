@@ -86,7 +86,7 @@ retriever = vector_store.as_retriever()
 
 def get_tools(query):
     docs = retriever.get_relevant_documents(query)
-    return [custom_tools[d.metadata["index"]] for d in docs] # 가장 연관이 높은 tool 2개만 선정
+    return [custom_tools[d.metadata["index"]] for d in docs]
 
 # Set up the base template
 template = """Answer the following questions as best you can, but speaking as a pirate might speak. You have access to the following tools:
@@ -186,5 +186,5 @@ agent = LLMSingleActionAgent(
 
 agent_executor = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True)
 
-def make_response(input):
+def get_reply(input):
     return agent_executor.run(input)

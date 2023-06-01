@@ -30,7 +30,7 @@ human_template="""
 규칙 :
 1. 질문이 특정 사기 유형에 해당하지 않는다면 먼저 임대인이 보증금을 돌려주지 않는 경우에 대한 대처방법을 답변한다.
 
-위 내용과 규칙을 참고해서 다음 Question에 1500단어 정도로 답변해줘.
+위 내용과 규칙을 참고해서 다음 Question에 500단어 정도로 답변해줘.
 Question :  {text}
 """
 human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
@@ -39,7 +39,7 @@ chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_mes
 
 # prompt template가 1025이고, 사용자의 질문을 고려해서 2500으로 산정
 # llm = ChatOpenAI(temperature=0, max_tokens=1500)
-llm = ChatOpenAI(streaming=True, callbacks=[StreamingStdOutCallbackHandler()], temperature=0, max_tokens=2500)
+llm = ChatOpenAI(streaming=True, callbacks=[StreamingStdOutCallbackHandler()], temperature=0, max_tokens=700)
 
 after_contract_period_chain = LLMChain(
         llm=llm,

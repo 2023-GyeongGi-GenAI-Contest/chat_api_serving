@@ -42,7 +42,7 @@ human_template="""
 1. 질문이 특정 사기 유형에 해당하지 않는다면 먼저 전세사기 유형 2가지에 대해 답변에서 설명한다.
 2. 해당하는 유형별 대처 방법을 반드시 답변에 포함한다.
 
-위 내용과 규칙을 참고해서 다음 Question에 1500단어 정도로 답변해.
+위 내용과 규칙을 참고해서 다음 Question에 500단어 정도로 답변해.
 Question :  {text}
 """
 human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
@@ -51,7 +51,7 @@ chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_mes
 
 # prompt template가 1817이고, 사용자의 질문을 고려해서 1800으로 산정
 # llm = ChatOpenAI(temperature=0, max_tokens=1800)
-llm = ChatOpenAI(streaming=True, callbacks=[StreamingStdOutCallbackHandler()], temperature=0, max_tokens=1800)
+llm = ChatOpenAI(streaming=True, callbacks=[StreamingStdOutCallbackHandler()], temperature=0, max_tokens=700)
 
 check_lessor_chain = LLMChain(
     llm=llm,
