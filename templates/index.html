@@ -69,7 +69,7 @@
         },
         methods: {
           test_get: () => {
-              axios("/chat/chat", {
+              axios("/chat", {
                 method: "get"
               }, {
                 withCredentials: true
@@ -90,7 +90,7 @@
                       isReply: false,
                   });
 
-              axios.post("/chat/response", {
+              axios.post("/response", {
                 message: this.message,
               },{
                 withCredentials: true
