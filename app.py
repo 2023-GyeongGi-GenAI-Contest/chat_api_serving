@@ -4,6 +4,7 @@ from flask import request
 import json
 
 from Agent.chat_agent import get_reply
+from Agent.keyword_agent import generate_keyword
 
 app = Flask(__name__)
 
@@ -20,6 +21,8 @@ def gg_make_chat():
     response = {"sessionId": sessionId, "msgNum": str(msgNum+1),"msgType": "1", "text": reply,"clientId": clientId}
     return jsonify(response)
 
-# @app.route("/gg/genai/keyword", methods=['POST'])
-# def gg_make_keyword():
-#     return None
+@app.route("/gg/genai/keyword", methods=['POST'])
+def gg_make_keyword():
+    Data = str(request.json.get("text"))
+    response = generate_keyword(Data)
+    return jsonify(json.loads(response))
